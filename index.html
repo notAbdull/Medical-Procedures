@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Medical Services Catalog</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #f5f5f7;
+      --card-bg: #ffffff;
+      --accent: #2f80ed;
+      --text-main: #222222;
+      --text-muted: #666666;
+      --border: #e0e0e0;
+      --radius: 14px;
+      --shadow: 0 10px 25px rgba(0,0,0,0.05);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text-main);
+      padding: 24px;
+    }
+
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 24px;
+    }
+
+    header h1 {
+      font-size: 1.8rem;
+      margin-bottom: 6px;
+    }
+
+    header p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin: 18px 0 24px;
+    }
+
+    .search-input {
+      flex: 1 1 240px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--border);
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    .search-input:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 2px rgba(47,128,237,0.15);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      padding: 16px 18px 14px;
+      box-shadow: var(--shadow);
+      border: 1px solid rgba(255,255,255,0.8);
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      transition: transform 0.12s ease, box-shadow 0.12s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 16px 30px rgba(0,0,0,0.07);
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 2px 10px;
+      border-radius: 999px;
+      background: rgba(47,128,237,0.08);
+      color: var(--accent);
+      font-size: 0.72rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+
+    .service-name {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .category {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+    }
+
+    .label {
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--text-muted);
+      margin-top: 6px;
+    }
+
+    .purpose, .description {
+      font-size: 0.85rem;
+      line-height: 1.4;
+    }
+
+    .empty-state {
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 24px;
+      display: none;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 16px;
+      }
+      header h1 {
+        font-size: 1.4rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Medical Materials &amp; Services</h1>
+      <p>Browse categorized medical materials and services with their purposes and descriptions.</p>
+    </header>
+
+    <div class="controls">
+      <input
+        type="text"
+        id="search"
+        class="search-input"
+        placeholder="Search by name, category, purpose…"
+      />
+    </div>
+
+    <div id="cards" class="cards-grid">
+
+      <div class="card"
+           data-name="KYLIX GLOW"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="تحسين نضارة البشرة وتجديد الخلايا">
+        <span class="badge">نضارة</span>
+        <div class="service-name">KYLIX GLOW</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحسين نضارة البشرة وتجديد الخلايا</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          اكتشفي سر نضارة بشرتك
+في عيادتنا نقدم لك مجموعة متكاملة من العلاجات المخصصة لتعزيز إشراقة بشرتك وتجديد نضارتها بطرق آمنة وفعالة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="LINUTRIX"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="تحفيز الكولاجين وزيادة ترطيب البشرة">
+        <span class="badge">نضارة</span>
+        <div class="service-name">LINUTRIX</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحفيز الكولاجين وزيادة ترطيب البشرة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «نضارة البشرة وعلاج آثار الشباب» تهدف إلى: تحفيز الكولاجين وزيادة ترطيب البشرة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="CELLBOOSTER GLOW"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="تفتيح البشرة وتحسين لونها العام">
+        <span class="badge">نضارة</span>
+        <div class="service-name">CELLBOOSTER GLOW</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تفتيح البشرة وتحسين لونها العام</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «نضارة البشرة وعلاج آثار الشباب» تهدف إلى: تفتيح البشرة وتحسين لونها العام.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="YOUTHHEAL SKIN BOOSTER"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="تحفيز تجديد البشرة وتقليل آثار الحبوب">
+        <span class="badge">نضارة</span>
+        <div class="service-name">YOUTHHEAL SKIN BOOSTER</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحفيز تجديد البشرة وتقليل آثار الحبوب</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «نضارة البشرة وعلاج آثار الشباب» تهدف إلى: تحفيز تجديد البشرة وتقليل آثار الحبوب.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="RRS HA"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="ترطيب البشرة بعمق وتحسين مرونتها">
+        <span class="badge">نضارة</span>
+        <div class="service-name">RRS HA</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">ترطيب البشرة بعمق وتحسين مرونتها</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «نضارة البشرة وعلاج آثار الشباب» تهدف إلى: ترطيب البشرة بعمق وتحسين مرونتها.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="BELOTERO REVIVE"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="تحسين مظهر البشرة وتقليل الجفاف">
+        <span class="badge">نضارة</span>
+        <div class="service-name">BELOTERO REVIVE</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحسين مظهر البشرة وتقليل الجفاف</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «نضارة البشرة وعلاج آثار الشباب» تهدف إلى: تحسين مظهر البشرة وتقليل الجفاف.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="NUVIA ROBUSTA"
+           data-category="فيلر و نحت الوجه"
+           data-purpose="تعويض فقدان الحجم في المناطق العميقة من الوجه">
+        <span class="badge">فيلر</span>
+        <div class="service-name">NUVIA ROBUSTA</div>
+        <div class="category">القسم الرئيسي: فيلر و نحت الوجه</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تعويض فقدان الحجم في المناطق العميقة من الوجه</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «فيلر و نحت الوجه» تهدف إلى: تعويض فقدان الحجم في المناطق العميقة من الوجه.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="NUVIA INTENSE LIPS"
+           data-category="فيلر و نحت الوجه"
+           data-purpose="تكبير الشفاه وتحسين شكلها">
+        <span class="badge">فيلر</span>
+        <div class="service-name">NUVIA INTENSE LIPS</div>
+        <div class="category">القسم الرئيسي: فيلر و نحت الوجه</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تكبير الشفاه وتحسين شكلها</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «فيلر و نحت الوجه» تهدف إلى: تكبير الشفاه وتحسين شكلها.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="TEOSYAL RHA3"
+           data-category="فيلر و نحت الوجه"
+           data-purpose="ملء التجاعيد المتحركة وتحسين مرونة البشرة">
+        <span class="badge">فيلر</span>
+        <div class="service-name">TEOSYAL RHA3</div>
+        <div class="category">القسم الرئيسي: فيلر و نحت الوجه</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">ملء التجاعيد المتحركة وتحسين مرونة البشرة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «فيلر و نحت الوجه» تهدف إلى: ملء التجاعيد المتحركة وتحسين مرونة البشرة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="TEOSYAL RHA4"
+           data-category="فيلر و نحت الوجه"
+           data-purpose="نحت ملامح الوجه وإضافة حجم للمناطق العميقة">
+        <span class="badge">فيلر</span>
+        <div class="service-name">TEOSYAL RHA4</div>
+        <div class="category">القسم الرئيسي: فيلر و نحت الوجه</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">نحت ملامح الوجه وإضافة حجم للمناطق العميقة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «فيلر و نحت الوجه» تهدف إلى: نحت ملامح الوجه وإضافة حجم للمناطق العميقة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="REVOLAX DEEP"
+           data-category="فيلر و نحت الوجه"
+           data-purpose="ملء التجاعيد المتوسطة إلى العميقة وإضافة حجم">
+        <span class="badge">فيلر</span>
+        <div class="service-name">REVOLAX DEEP</div>
+        <div class="category">القسم الرئيسي: فيلر و نحت الوجه</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">ملء التجاعيد المتوسطة إلى العميقة وإضافة حجم</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «فيلر و نحت الوجه» تهدف إلى: ملء التجاعيد المتوسطة إلى العميقة وإضافة حجم.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="REVOLAX FINE"
+           data-category="فيلر و نحت الوجه"
+           data-purpose="تصحيح الخطوط السطحية والتجاعيد الخفيفة">
+        <span class="badge">فيلر</span>
+        <div class="service-name">REVOLAX FINE</div>
+        <div class="category">القسم الرئيسي: فيلر و نحت الوجه</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تصحيح الخطوط السطحية والتجاعيد الخفيفة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «فيلر و نحت الوجه» تهدف إلى: تصحيح الخطوط السطحية والتجاعيد الخفيفة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="REVOLAX SUB Q"
+           data-category="فيلر و نحت الوجه"
+           data-purpose="إضافة حجم للمناطق العميقة مثل الذقن والخدين">
+        <span class="badge">فيلر</span>
+        <div class="service-name">REVOLAX SUB Q</div>
+        <div class="category">القسم الرئيسي: فيلر و نحت الوجه</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">إضافة حجم للمناطق العميقة مثل الذقن والخدين</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «فيلر و نحت الوجه» تهدف إلى: إضافة حجم للمناطق العميقة مثل الذقن والخدين.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="REVOLAX LIPS"
+           data-category="فيلر و نحت الوجه"
+           data-purpose="إبراز الشفاه وتحسين شكلها مع الحفاظ على مظهر طبيعي">
+        <span class="badge">فيلر</span>
+        <div class="service-name">REVOLAX LIPS</div>
+        <div class="category">القسم الرئيسي: فيلر و نحت الوجه</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">إبراز الشفاه وتحسين شكلها مع الحفاظ على مظهر طبيعي</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «فيلر و نحت الوجه» تهدف إلى: إبراز الشفاه وتحسين شكلها مع الحفاظ على مظهر طبيعي.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="ENHANCIA ULTRA LIPS"
+           data-category="فيلر و نحت الوجه"
+           data-purpose="تكبير وتحسين مظهر الشفاه">
+        <span class="badge">فيلر</span>
+        <div class="service-name">ENHANCIA ULTRA LIPS</div>
+        <div class="category">القسم الرئيسي: فيلر و نحت الوجه</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تكبير وتحسين مظهر الشفاه</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «فيلر و نحت الوجه» تهدف إلى: تكبير وتحسين مظهر الشفاه.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="ENHANCIA SOFT"
+           data-category="فيلر و نحت الوجه"
+           data-purpose="تصحيح الخطوط الدقيقة في الوجه">
+        <span class="badge">فيلر</span>
+        <div class="service-name">ENHANCIA SOFT</div>
+        <div class="category">القسم الرئيسي: فيلر و نحت الوجه</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تصحيح الخطوط الدقيقة في الوجه</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «فيلر و نحت الوجه» تهدف إلى: تصحيح الخطوط الدقيقة في الوجه.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="ENHANCIA DEEP"
+           data-category="فيلر و نحت الوجه"
+           data-purpose="ملء التجاعيد المتوسطة إلى العميقة وإضافة حجم خفيف">
+        <span class="badge">فيلر</span>
+        <div class="service-name">ENHANCIA DEEP</div>
+        <div class="category">القسم الرئيسي: فيلر و نحت الوجه</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">ملء التجاعيد المتوسطة إلى العميقة وإضافة حجم خفيف</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «فيلر و نحت الوجه» تهدف إلى: ملء التجاعيد المتوسطة إلى العميقة وإضافة حجم خفيف.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="ENHANCIA VOLUME"
+           data-category="فيلر و نحت الوجه"
+           data-purpose="إضافة حجم للمناطق العميقة ونحت ملامح الوجه">
+        <span class="badge">فيلر</span>
+        <div class="service-name">ENHANCIA VOLUME</div>
+        <div class="category">القسم الرئيسي: فيلر و نحت الوجه</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">إضافة حجم للمناطق العميقة ونحت ملامح الوجه</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «فيلر و نحت الوجه» تهدف إلى: إضافة حجم للمناطق العميقة ونحت ملامح الوجه.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="BOTULAX 50"
+           data-category="البوتوكس"
+           data-purpose="تقليل التجاعيد التعبيرية في الوجه">
+        <span class="badge">بوتوكس</span>
+        <div class="service-name">BOTULAX 50</div>
+        <div class="category">القسم الرئيسي: البوتوكس</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تقليل التجاعيد التعبيرية في الوجه</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «البوتوكس» تهدف إلى: تقليل التجاعيد التعبيرية في الوجه.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="BOTULAX 100"
+           data-category="البوتوكس"
+           data-purpose="تقليل التجاعيد الديناميكية في مناطق متعددة من الوجه">
+        <span class="badge">بوتوكس</span>
+        <div class="service-name">BOTULAX 100</div>
+        <div class="category">القسم الرئيسي: البوتوكس</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تقليل التجاعيد الديناميكية في مناطق متعددة من الوجه</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «البوتوكس» تهدف إلى: تقليل التجاعيد الديناميكية في مناطق متعددة من الوجه.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="LEMON BOTTLE"
+           data-category="إذابة الدهون"
+           data-purpose="إذابة الدهون المحلية في مناطق الجسم الصغيرة">
+        <span class="badge">دهون</span>
+        <div class="service-name">LEMON BOTTLE</div>
+        <div class="category">القسم الرئيسي: إذابة الدهون</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">إذابة الدهون المحلية في مناطق الجسم الصغيرة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «إذابة الدهون» تهدف إلى: إذابة الدهون المحلية في مناطق الجسم الصغيرة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="CELLOLA"
+           data-category="إذابة الدهون"
+           data-purpose="تقليل الدهون وتحسين مظهر السيلولايت">
+        <span class="badge">دهون</span>
+        <div class="service-name">CELLOLA</div>
+        <div class="category">القسم الرئيسي: إذابة الدهون</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تقليل الدهون وتحسين مظهر السيلولايت</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «إذابة الدهون» تهدف إلى: تقليل الدهون وتحسين مظهر السيلولايت.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="KABELINE"
+           data-category="إذابة الدهون"
+           data-purpose="إذابة الدهون في منطقة الذقن ومناطق محددة من الجسم">
+        <span class="badge">دهون</span>
+        <div class="service-name">KABELINE</div>
+        <div class="category">القسم الرئيسي: إذابة الدهون</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">إذابة الدهون في منطقة الذقن ومناطق محددة من الجسم</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «إذابة الدهون» تهدف إلى: إذابة الدهون في منطقة الذقن ومناطق محددة من الجسم.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="DERMAWHITE"
+           data-category="تفتيح وتوحيد لون البشرة"
+           data-purpose="تفتيح البشرة وتقليل التصبغات">
+        <span class="badge">تفتيح</span>
+        <div class="service-name">DERMAWHITE</div>
+        <div class="category">القسم الرئيسي: تفتيح وتوحيد لون البشرة</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تفتيح البشرة وتقليل التصبغات</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «تفتيح وتوحيد لون البشرة» تهدف إلى: تفتيح البشرة وتقليل التصبغات.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="DERMAWHITE UNDER EYE"
+           data-category="تفتيح وتوحيد لون البشرة"
+           data-purpose="تفتيح الهالات السوداء وتحسين مظهر منطقة تحت العين">
+        <span class="badge">تفتيح</span>
+        <div class="service-name">DERMAWHITE UNDER EYE</div>
+        <div class="category">القسم الرئيسي: تفتيح وتوحيد لون البشرة</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تفتيح الهالات السوداء وتحسين مظهر منطقة تحت العين</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «تفتيح وتوحيد لون البشرة» تهدف إلى: تفتيح الهالات السوداء وتحسين مظهر منطقة تحت العين.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="SNOW WHITE"
+           data-category="تفتيح وتوحيد لون البشرة"
+           data-purpose="توحيد لون البشرة ومنحها إشراقًا">
+        <span class="badge">تفتيح</span>
+        <div class="service-name">SNOW WHITE</div>
+        <div class="category">القسم الرئيسي: تفتيح وتوحيد لون البشرة</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">توحيد لون البشرة ومنحها إشراقًا</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «تفتيح وتوحيد لون البشرة» تهدف إلى: توحيد لون البشرة ومنحها إشراقًا.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="LIPORASE"
+           data-category="إذابة الفيلر"
+           data-purpose="إذابة الفيلر الهلامي في المناطق غير المرغوبة">
+        <span class="badge">إذابة</span>
+        <div class="service-name">LIPORASE</div>
+        <div class="category">القسم الرئيسي: إذابة الفيلر</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">إذابة الفيلر الهلامي في المناطق غير المرغوبة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «إذابة الفيلر» تهدف إلى: إذابة الفيلر الهلامي في المناطق غير المرغوبة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="RRS HA EYES"
+           data-category="حول العين"
+           data-purpose="ترطيب منطقة حول العين وتقليل التجاعيد الدقيقة">
+        <span class="badge">عين</span>
+        <div class="service-name">RRS HA EYES</div>
+        <div class="category">القسم الرئيسي: حول العين</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">ترطيب منطقة حول العين وتقليل التجاعيد الدقيقة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «حول العين» تهدف إلى: ترطيب منطقة حول العين وتقليل التجاعيد الدقيقة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="LIGHT EYES"
+           data-category="حول العين"
+           data-purpose="تفتيح منطقة حول العين وتقليل الانتفاخات">
+        <span class="badge">عين</span>
+        <div class="service-name">LIGHT EYES</div>
+        <div class="category">القسم الرئيسي: حول العين</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تفتيح منطقة حول العين وتقليل الانتفاخات</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «حول العين» تهدف إلى: تفتيح منطقة حول العين وتقليل الانتفاخات.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="HAIR SYSTEM"
+           data-category="الشعر"
+           data-purpose="تحفيز نمو الشعر وتقوية البصيلات">
+        <span class="badge">شعر</span>
+        <div class="service-name">HAIR SYSTEM</div>
+        <div class="category">القسم الرئيسي: الشعر</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحفيز نمو الشعر وتقوية البصيلات</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «الشعر» تهدف إلى: تحفيز نمو الشعر وتقوية البصيلات.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="DR. CYJ HAIR FILLER"
+           data-category="الشعر"
+           data-purpose="تقوية الشعر وتقليل التساقط">
+        <span class="badge">شعر</span>
+        <div class="service-name">DR. CYJ HAIR FILLER</div>
+        <div class="category">القسم الرئيسي: الشعر</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تقوية الشعر وتقليل التساقط</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «الشعر» تهدف إلى: تقوية الشعر وتقليل التساقط.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="EXOSOMES HAIR"
+           data-category="الشعر"
+           data-purpose="تحفيز التجديد الخلوي في فروة الرأس لتحسين نمو الشعر">
+        <span class="badge">شعر</span>
+        <div class="service-name">EXOSOMES HAIR</div>
+        <div class="category">القسم الرئيسي: الشعر</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحفيز التجديد الخلوي في فروة الرأس لتحسين نمو الشعر</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «الشعر» تهدف إلى: تحفيز التجديد الخلوي في فروة الرأس لتحسين نمو الشعر.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="EXOSOMES FACE"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="تحفيز تجديد الخلايا في البشرة وتحسين النضارة">
+        <span class="badge">نضارة</span>
+        <div class="service-name">EXOSOMES FACE</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحفيز تجديد الخلايا في البشرة وتحسين النضارة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «نضارة البشرة وعلاج آثار الشباب» تهدف إلى: تحفيز تجديد الخلايا في البشرة وتحسين النضارة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="GOURI"
+           data-category="الكولاجين"
+           data-purpose="تحفيز إنتاج الكولاجين وتحسين مرونة البشرة">
+        <span class="badge">كولاجين</span>
+        <div class="service-name">GOURI</div>
+        <div class="category">القسم الرئيسي: الكولاجين</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحفيز إنتاج الكولاجين وتحسين مرونة البشرة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «الكولاجين» تهدف إلى: تحفيز إنتاج الكولاجين وتحسين مرونة البشرة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="Dermaheal SB"
+           data-category="تفتيح وتوحيد لون البشرة"
+           data-purpose="تقليل التصبغات وتوحيد لون البشرة">
+        <span class="badge">تفتيح</span>
+        <div class="service-name">Dermaheal SB</div>
+        <div class="category">القسم الرئيسي: تفتيح وتوحيد لون البشرة</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تقليل التصبغات وتوحيد لون البشرة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «تفتيح وتوحيد لون البشرة» تهدف إلى: تقليل التصبغات وتوحيد لون البشرة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="Dermaheal HL"
+           data-category="الشعر"
+           data-purpose="تحفيز نمو الشعر وتقليل التساقط">
+        <span class="badge">شعر</span>
+        <div class="service-name">Dermaheal HL</div>
+        <div class="category">القسم الرئيسي: الشعر</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحفيز نمو الشعر وتقليل التساقط</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «الشعر» تهدف إلى: تحفيز نمو الشعر وتقليل التساقط.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="Dermaheal HSR"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="ترطيب البشرة وتحفيز تجديد الخلايا">
+        <span class="badge">نضارة</span>
+        <div class="service-name">Dermaheal HSR</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">ترطيب البشرة وتحفيز تجديد الخلايا</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «نضارة البشرة وعلاج آثار الشباب» تهدف إلى: ترطيب البشرة وتحفيز تجديد الخلايا.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="PRP"
+           data-category="الشعر"
+           data-purpose="علاج تساقط الشعر وتحفيز نموه باستخدام بلازما غنية بالصفائح">
+        <span class="badge">شعر</span>
+        <div class="service-name">PRP</div>
+        <div class="category">القسم الرئيسي: الشعر</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">علاج تساقط الشعر وتحفيز نموه باستخدام بلازما غنية بالصفائح</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «الشعر» تهدف إلى: علاج تساقط الشعر وتحفيز نموه باستخدام بلازما غنية بالصفائح.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="PRP"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="تحسين نضارة البشرة وتجديد الخلايا باستخدام بلازما غنية بالصفائح">
+        <span class="badge">نضارة</span>
+        <div class="service-name">PRP (Face)</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحسين نضارة البشرة وتجديد الخلايا باستخدام بلازما غنية بالصفائح</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «نضارة البشرة وعلاج آثار الشباب» تهدف إلى: تحسين نضارة البشرة وتجديد الخلايا باستخدام بلازما غنية بالصفائح.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="SKIN BOOSTER (GENERIC)"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="ترطيب عميق للبشرة وتحسين مرونتها">
+        <span class="badge">نضارة</span>
+        <div class="service-name">SKIN BOOSTER (GENERIC)</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">ترطيب عميق للبشرة وتحسين مرونتها</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «نضارة البشرة وعلاج آثار الشباب» تهدف إلى: ترطيب عميق للبشرة وتحسين مرونتها.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="MESOTHERAPY FACE"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="تغذية البشرة بالفيتامينات والمعادن لتحسين مظهرها">
+        <span class="badge">نضارة</span>
+        <div class="service-name">MESOTHERAPY FACE</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تغذية البشرة بالفيتامينات والمعادن لتحسين مظهرها</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «نضارة البشرة وعلاج آثار الشباب» تهدف إلى: تغذية البشرة بالفيتامينات والمعادن لتحسين مظهرها.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="MESOTHERAPY HAIR"
+           data-category="الشعر"
+           data-purpose="تغذية فروة الرأس وتحفيز نمو الشعر">
+        <span class="badge">شعر</span>
+        <div class="service-name">MESOTHERAPY HAIR</div>
+        <div class="category">القسم الرئيسي: الشعر</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تغذية فروة الرأس وتحفيز نمو الشعر</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «الشعر» تهدف إلى: تغذية فروة الرأس وتحفيز نمو الشعر.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="SCAR TREATMENT"
+           data-category="علاج الندبات"
+           data-purpose="تحسين مظهر ندبات حب الشباب أو العمليات الجراحية">
+        <span class="badge">ندبات</span>
+        <div class="service-name">SCAR TREATMENT</div>
+        <div class="category">القسم الرئيسي: علاج الندبات</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحسين مظهر ندبات حب الشباب أو العمليات الجراحية</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «علاج الندبات» تهدف إلى: تحسين مظهر ندبات حب الشباب أو العمليات الجراحية.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="ACNE TREATMENT"
+           data-category="علاج حب الشباب"
+           data-purpose="تقليل نشاط حب الشباب وتحسين مظهر البشرة">
+        <span class="badge">حب الشباب</span>
+        <div class="service-name">ACNE TREATMENT</div>
+        <div class="category">القسم الرئيسي: علاج حب الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تقليل نشاط حب الشباب وتحسين مظهر البشرة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «علاج حب الشباب» تهدف إلى: تقليل نشاط حب الشباب وتحسين مظهر البشرة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="PIGMENTATION PEEL"
+           data-category="تفتيح وتوحيد لون البشرة"
+           data-purpose="تقليل التصبغات وتوحيد لون البشرة عن طريق التقشير">
+        <span class="badge">تفتيح</span>
+        <div class="service-name">PIGMENTATION PEEL</div>
+        <div class="category">القسم الرئيسي: تفتيح وتوحيد لون البشرة</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تقليل التصبغات وتوحيد لون البشرة عن طريق التقشير</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «تفتيح وتوحيد لون البشرة» تهدف إلى: تقليل التصبغات وتوحيد لون البشرة عن طريق التقشير.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="ANTI-AGING PEEL"
+           data-category="علاجات مكافحة الشيخوخة"
+           data-purpose="تحفيز تجديد البشرة وتقليل التجاعيد السطحية">
+        <span class="badge">مكافحة الشيخوخة</span>
+        <div class="service-name">ANTI-AGING PEEL</div>
+        <div class="category">القسم الرئيسي: علاجات مكافحة الشيخوخة</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحفيز تجديد البشرة وتقليل التجاعيد السطحية</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «علاجات مكافحة الشيخوخة» تهدف إلى: تحفيز تجديد البشرة وتقليل التجاعيد السطحية.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="HYDRATING PEEL"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="ترطيب البشرة وتحسين ملمسها عن طريق التقشير اللطيف">
+        <span class="badge">نضارة</span>
+        <div class="service-name">HYDRATING PEEL</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">ترطيب البشرة وتحسين ملمسها عن طريق التقشير اللطيف</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «نضارة البشرة وعلاج آثار الشباب» تهدف إلى: ترطيب البشرة وتحسين ملمسها عن طريق التقشير اللطيف.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="DERMAROLLER TREATMENT"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="تحفيز تجدد البشرة وتقليل الندبات والخطوط الرفيعة">
+        <span class="badge">نضارة</span>
+        <div class="service-name">DERMAROLLER TREATMENT</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحفيز تجدد البشرة وتقليل الندبات والخطوط الرفيعة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «نضارة البشرة وعلاج آثار الشباب» تهدف إلى: تحفيز تجدد البشرة وتقليل الندبات والخطوط الرفيعة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="MICRONEEDLING WITH MESO"
+           data-category="نضارة البشرة وعلاج آثار الشباب"
+           data-purpose="دمج الوخز الدقيق مع الميزوثيرابي لتحسين مظهر البشرة">
+        <span class="badge">نضارة</span>
+        <div class="service-name">MICRONEEDLING WITH MESO</div>
+        <div class="category">القسم الرئيسي: نضارة البشرة وعلاج آثار الشباب</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">دمج الوخز الدقيق مع الميزوثيرابي لتحسين مظهر البشرة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «نضارة البشرة وعلاج آثار الشباب» تهدف إلى: دمج الوخز الدقيق مع الميزوثيرابي لتحسين مظهر البشرة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="FRACTIONAL LASER"
+           data-category="علاج الندبات وتجديد البشرة"
+           data-purpose="تحسين ملمس البشرة وتقليل الندبات والمسام الواسعة">
+        <span class="badge">ليزر</span>
+        <div class="service-name">FRACTIONAL LASER</div>
+        <div class="category">القسم الرئيسي: علاج الندبات وتجديد البشرة</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحسين ملمس البشرة وتقليل الندبات والمسام الواسعة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «علاج الندبات وتجديد البشرة» تهدف إلى: تحسين ملمس البشرة وتقليل الندبات والمسام الواسعة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="PIGMENT LASER"
+           data-category="تفتيح وتوحيد لون البشرة"
+           data-purpose="استهداف التصبغات وبقع الشمس لتحسين لون البشرة">
+        <span class="badge">ليزر</span>
+        <div class="service-name">PIGMENT LASER</div>
+        <div class="category">القسم الرئيسي: تفتيح وتوحيد لون البشرة</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">استهداف التصبغات وبقع الشمس لتحسين لون البشرة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «تفتيح وتوحيد لون البشرة» تهدف إلى: استهداف التصبغات وبقع الشمس لتحسين لون البشرة.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="HAIR REMOVAL LASER"
+           data-category="إزالة الشعر بالليزر"
+           data-purpose="إزالة الشعر غير المرغوب فيه بشكل طويل الأمد">
+        <span class="badge">ليزر</span>
+        <div class="service-name">HAIR REMOVAL LASER</div>
+        <div class="category">القسم الرئيسي: إزالة الشعر بالليزر</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">إزالة الشعر غير المرغوب فيه بشكل طويل الأمد</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «إزالة الشعر بالليزر» تهدف إلى: إزالة الشعر غير المرغوب فيه بشكل طويل الأمد.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="SKIN TIGHTENING LASER"
+           data-category="شد البشرة"
+           data-purpose="تحفيز الكولاجين لشد البشرة وتحسين مرونتها">
+        <span class="badge">ليزر</span>
+        <div class="service-name">SKIN TIGHTENING LASER</div>
+        <div class="category">القسم الرئيسي: شد البشرة</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تحفيز الكولاجين لشد البشرة وتحسين مرونتها</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «شد البشرة» تهدف إلى: تحفيز الكولاجين لشد البشرة وتحسين مرونتها.
+        </div>
+      </div>
+
+      <div class="card"
+           data-name="REDNESS LASER"
+           data-category="علاج الاحمرار"
+           data-purpose="تقليل احمرار البشرة وتحسين مظهر الشعيرات الدموية الظاهرة">
+        <span class="badge">ليزر</span>
+        <div class="service-name">REDNESS LASER</div>
+        <div class="category">القسم الرئيسي: علاج الاحمرار</div>
+
+        <div class="label">Purpose / الهدف</div>
+        <div class="purpose">تقليل احمرار البشرة وتحسين مظهر الشعيرات الدموية الظاهرة</div>
+
+        <div class="label">Description / وصف مختصر</div>
+        <div class="description">
+          خدمة أو مادة طبية ضمن فئة «علاج الاحمرار» تهدف إلى: تقليل احمرار البشرة وتحسين مظهر الشعيرات الدموية الظاهرة.
+        </div>
+      </div>
+
+    </div>
+
+    <div id="empty" class="empty-state">
+      No services match your search. Try different keywords.
+    </div>
+  </div>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const cardsContainer = document.getElementById('cards');
+    const cards = Array.from(cardsContainer.getElementsByClassName('card'));
+    const emptyState = document.getElementById('empty');
+
+    function normalize(text) {
+      return text.toLowerCase();
+    }
+
+    function applyFilter() {
+      const query = normalize(searchInput.value.trim());
+      let visibleCount = 0;
+
+      cards.forEach(card => {
+        const name = normalize(card.dataset.name || '');
+        const category = normalize(card.dataset.category || '');
+        const purpose = normalize(card.dataset.purpose || '');
+        const text = name + ' ' + category + ' ' + purpose;
+
+        if (!query || text.includes(query)) {
+          card.style.display = '';
+          visibleCount++;
+        } else {
+          card.style.display = 'none';
+        }
+      });
+
+      emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    searchInput.addEventListener('input', applyFilter);
+  </script>
+</body>
+</html>
